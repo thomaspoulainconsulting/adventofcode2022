@@ -4,7 +4,7 @@ class Day1 : Day(1, "Calorie Counting") {
 
     override fun solvePart1(input: List<String>): String {
         return getElfs(input)
-            .maxOrNull()
+            .max()
             .toString()
     }
 
