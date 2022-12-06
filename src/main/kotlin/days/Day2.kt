@@ -43,7 +43,7 @@ class Day2 : Day(2, "Rock Paper Scissors") {
                 'X' -> Day2.ME.values()
                     .find { it.char == opponent.winAgainst }!!.level() // I need to lose
                 'Z' -> Day2.ME.values()
-                    .find { it.winAgainst == opponent.char }!!.level() + 6 // I need to win
+                    .find { opponent.char == it.winAgainst }!!.level() + 6 // I need to win
                 else -> 0
             }
         }.toString()

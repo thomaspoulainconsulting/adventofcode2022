@@ -3,7 +3,7 @@ package days
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class Day1Test {
+class Day1Test: AdventOfCodeTest {
 
     private val day = Day1()
     private val input =
@@ -27,12 +27,12 @@ class Day1Test {
 
 
     @Test
-    fun solvePart1Test() {
+    override fun solvePart1Test() {
         assertEquals("24000", day.solvePart1(input))
     }
 
     @Test
-    fun solvePart2Test() {
+    override fun solvePart2Test() {
         assertEquals("45000", day.solvePart2(input))
     }
 }

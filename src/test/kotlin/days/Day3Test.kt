@@ -3,7 +3,7 @@ package days
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
-class Day3Test {
+class Day3Test: AdventOfCodeTest {
 
     private val day = Day3()
     private val input =
@@ -18,12 +18,12 @@ class Day3Test {
 
 
     @Test
-    fun solvePart1Test() {
+    override fun solvePart1Test() {
         assertEquals("157", day.solvePart1(input))
     }
 
     @Test
-    fun solvePart2Test() {
+    override fun solvePart2Test() {
         assertEquals("70", day.solvePart2(input))
     }
 }
