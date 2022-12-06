@@ -24,6 +24,6 @@ class Day3Test: AdventOfCodeTest {
 
     @Test
     override fun solvePart2Test() {
-        assertEquals("70", day.solvePart2(input))
+        assertEquals("70prout", day.solvePart2(input))
     }
 }
