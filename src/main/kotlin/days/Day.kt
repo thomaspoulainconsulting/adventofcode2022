@@ -8,7 +8,7 @@ abstract class Day(private val day: Int, private val name: String) {
     abstract fun solvePart2(input: List<String>): String
 
     fun solve() {
-        println("\n<Day $day - $name> - https://adventofcode.com/2022/day/$day")
+        println("\nDay $day - $name")
         val resultPartOne = solvePart1(input)
         println("Part One: $resultPartOne")
 
