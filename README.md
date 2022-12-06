@@ -1,4 +1,4 @@
-# Advent of Code - 2022 Edition
+# Advent of Code - 2022 Edition [![CircleCI](https://dl.circleci.com/status-badge/img/gh/molpoo/adventofcode2022/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/molpoo/adventofcode2022/tree/main)
 
 - Day 1 - Calorie Counting
   - https://adventofcode.com/2022/day/1
