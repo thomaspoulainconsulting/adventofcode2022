@@ -26,6 +26,10 @@ class Day6Test : AdventOfCodeTest {
 
     @Test
     override fun solvePart2Test() {
-        //TestCase.assertEquals("MCD", day.solvePart2(input))
+        TestCase.assertEquals("19", day.solvePart2(listOf(input[0])))
+        TestCase.assertEquals("23", day.solvePart2(listOf(input[1])))
+        TestCase.assertEquals("23", day.solvePart2(listOf(input[2])))
+        TestCase.assertEquals("29", day.solvePart2(listOf(input[3])))
+        TestCase.assertEquals("26", day.solvePart2(listOf(input[4])))
     }
 }
