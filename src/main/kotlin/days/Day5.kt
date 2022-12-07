@@ -9,10 +9,11 @@ class Day5 : Day(5, "Supply Stacks") {
 
     override fun solvePart1(input: List<String>): String {
 
-        val crates: MutableList<MutableList<Char>> = MutableList(size = 9) { mutableListOf() }
+        val crates = MutableList<MutableList<Char>>(size = 9) { mutableListOf() }
         val instructions = mutableListOf<Instruction>()
 
         input.forEach { line ->
+            // read up all crates
             if (line.contains('[')) {
                 line.forEachIndexed { index, crate ->
                     if (crate.isLetter()) {
@@ -21,36 +22,41 @@ class Day5 : Day(5, "Supply Stacks") {
                 }
             }
 
+            // read all moves
             if (line.contains("move")) {
                 Pattern.compile("move (\\d+) from (\\d) to (\\d)").toRegex()
                     .find(line)?.groupValues?.let {
                     instructions.add(
                         Instruction(
-                            it[1].toInt(),
-                            it[2].toInt() - 1,
-                            it[3].toInt() - 1
+                            numberOfCrateToMove = it[1].toInt(),
+                            columnFrom = it[2].toInt() - 1,
+                            columnTo = it[3].toInt() - 1
                         )
                     )
                 }
             }
         }
 
-        crates.map {
-            it.reverse()
-        }
+        // Reverse the crates
+        crates.map { it.reverse() }
 
         // execute the moves
         instructions.forEach { instruction ->
-            val elementToMove =
-                crates[instruction.columnFrom].subList(crates[instruction.columnFrom].size-instruction.numberOfCrateToMove, crates[instruction.columnFrom].size)
+
+            // We extract the items to move
+            val subListFrom = crates[instruction.columnFrom].size - instruction.numberOfCrateToMove
+            val elementToMove = crates[instruction.columnFrom].subList(subListFrom, crates[instruction.columnFrom].size)
+
+            // We remove the items
             crates[instruction.columnFrom] = crates[instruction.columnFrom].dropLast(instruction.numberOfCrateToMove).toMutableList()
 
+            // We add the items to the right column
             elementToMove.apply { reverse() }.forEach {
                 crates[instruction.columnTo].add(it)
             }
         }
 
-        // results
+        // We forge the result with the last char element of each crate
         var result = ""
         crates.forEach {
             if (it.isNotEmpty()) {
