@@ -2,7 +2,6 @@ package days
 
 import java.util.regex.Pattern
 
-
 class Day5 : Day(5, "Supply Stacks") {
 
     class Instruction(val numberOfCrateToMove: Int, val columnFrom: Int, val columnTo: Int)
