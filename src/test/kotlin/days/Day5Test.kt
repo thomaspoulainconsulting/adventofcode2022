@@ -26,6 +26,6 @@ class Day5Test: AdventOfCodeTest {
 
     @Test
     override fun solvePart2Test() {
-        //TestCase.assertEquals("4", day.solvePart2(input))
+        TestCase.assertEquals("MCD", day.solvePart2(input))
     }
 }

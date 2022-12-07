@@ -8,7 +8,14 @@ class Day5 : Day(5, "Supply Stacks") {
     class Instruction(val numberOfCrateToMove: Int, val columnFrom: Int, val columnTo: Int)
 
     override fun solvePart1(input: List<String>): String {
+        return moveCrates(input, false)
+    }
 
+    override fun solvePart2(input: List<String>): String {
+        return moveCrates(input, true)
+    }
+
+    private fun moveCrates(input: List<String>, keepOrder: Boolean): String {
         val crates = MutableList<MutableList<Char>>(size = 9) { mutableListOf() }
         val instructions = mutableListOf<Instruction>()
 
@@ -26,14 +33,14 @@ class Day5 : Day(5, "Supply Stacks") {
             if (line.contains("move")) {
                 Pattern.compile("move (\\d+) from (\\d) to (\\d)").toRegex()
                     .find(line)?.groupValues?.let {
-                    instructions.add(
-                        Instruction(
-                            numberOfCrateToMove = it[1].toInt(),
-                            columnFrom = it[2].toInt() - 1,
-                            columnTo = it[3].toInt() - 1
+                        instructions.add(
+                            Instruction(
+                                numberOfCrateToMove = it[1].toInt(),
+                                columnFrom = it[2].toInt() - 1,
+                                columnTo = it[3].toInt() - 1
+                            )
                         )
-                    )
-                }
+                    }
             }
         }
 
@@ -45,15 +52,23 @@ class Day5 : Day(5, "Supply Stacks") {
 
             // We extract the items to move
             val subListFrom = crates[instruction.columnFrom].size - instruction.numberOfCrateToMove
-            val elementToMove = crates[instruction.columnFrom].subList(subListFrom, crates[instruction.columnFrom].size)
+            val elementToMove = crates[instruction.columnFrom].subList(
+                subListFrom,
+                crates[instruction.columnFrom].size
+            )
 
             // We remove the items
-            crates[instruction.columnFrom] = crates[instruction.columnFrom].dropLast(instruction.numberOfCrateToMove).toMutableList()
+            crates[instruction.columnFrom] =
+                crates[instruction.columnFrom].dropLast(instruction.numberOfCrateToMove)
+                    .toMutableList()
 
             // We add the items to the right column
-            elementToMove.apply { reverse() }.forEach {
-                crates[instruction.columnTo].add(it)
-            }
+            elementToMove
+                .apply {
+                    if (!keepOrder) reverse()
+                }.forEach {
+                    crates[instruction.columnTo].add(it)
+                }
         }
 
         // We forge the result with the last char element of each crate
@@ -65,9 +80,5 @@ class Day5 : Day(5, "Supply Stacks") {
         }
 
         return result
-    }
-
-    override fun solvePart2(input: List<String>): String {
-        return ""
     }
 }
